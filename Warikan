@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>割り勘計算</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  input[type="number"] {
+    width: 100px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+<h2>割り勘計算</h2>
+<form id="splitForm">
+  <label for="totalAmount">合計金額:</label>
+  <input type="number" id="totalAmount" name="totalAmount" required><br><br>
+  <label for="numberOfPeople">参加人数:</label>
+  <input type="number" id="numberOfPeople" name="numberOfPeople" required><br><br>
+  <button type="button" onclick="calculateSplit()">割り勘を計算する</button>
+</form>
+<div id="result"></div>
+
+<script>
+function calculateSplit() {
+  var totalAmount = parseFloat(document.getElementById('totalAmount').value);
+  var numberOfPeople = parseInt(document.getElementById('numberOfPeople').value);
+
+  if (isNaN(totalAmount) || isNaN(numberOfPeople) || totalAmount <= 0 || numberOfPeople <= 0) {
+    alert('合計金額と参加人数は正の数値で入力してください。');
+    return;
+  }
+
+  var perPersonAmount = totalAmount / numberOfPeople;
+  var resultText = '1人あたりの金額: ' + perPersonAmount.toFixed(2) + ' 円';
+  document.getElementById('result').textContent = resultText;
+}
+</script>
+</body>
+</html>
